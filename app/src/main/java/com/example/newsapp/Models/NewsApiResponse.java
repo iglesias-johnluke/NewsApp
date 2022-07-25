@@ -2,6 +2,9 @@ package com.example.newsapp.Models;
 
 import java.util.List;
 
+/**
+ * response object returned on successfull GET request within RequestManager class
+ * **/
 public class NewsApiResponse {
     String status;
     int totalResults;
