@@ -1,9 +1,11 @@
 package com.example.newsapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ListAdapter;
@@ -45,6 +47,28 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
                 listener.onNewsClicked(headlines.get(holder.getAdapterPosition()));
             }
         });
+
+        setShareIcon(holder, position);
+    }
+
+    /**
+     * enables share buttons on article cards
+     * **/
+    public void setShareIcon(CustomViewHolder holder, int position){
+        ImageButton shareButton = holder.shareButton;
+        String url = headlines.get(position).getUrl();
+        shareButton.setOnClickListener( new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, url);
+                        sendIntent.setType("text/plain");
+                        Intent shareIntent = Intent.createChooser(sendIntent, null);
+                        context.startActivity(shareIntent);
+                    }
+                }
+        );
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.newsapp;
 
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ public class CustomViewHolder extends RecyclerView.ViewHolder {
     TextView text_title, text_source;
     ImageView img_headline;
     CardView cardview;
+    ImageButton shareButton;
 
     public CustomViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -20,5 +22,6 @@ public class CustomViewHolder extends RecyclerView.ViewHolder {
         text_source = itemView.findViewById((R.id.text_source));
         img_headline = itemView.findViewById(R.id.img_headline);
         cardview = itemView.findViewById(R.id.main_container);
+        shareButton = itemView.findViewById(R.id.share_btn);
     }
 }
