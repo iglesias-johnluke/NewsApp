@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.example.newsapp.Models.NewsApiResponse;
@@ -13,11 +15,12 @@ import com.example.newsapp.Models.NewsHeadlines;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SelectListener{
 
     RecyclerView recyclerView;
     CustomAdapter adapter;
     ProgressDialog dialog;
+    Button b1, b2, b3, b4, b5, b6, b7;
 
     private final OnFetchListener<NewsApiResponse> listener = new OnFetchListener<NewsApiResponse>() {
         @Override
@@ -44,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
         RequestManager manager = new RequestManager(this);
         //queries API news data and then calls showNews() to display UI
         manager.getNewsHeadlines(listener, "general", null);
+
+        b1 = findViewById(R.id.btn_1);
+        b2 = findViewById(R.id.btn_2);
+        b3 = findViewById(R.id.btn_3);
+        b4 = findViewById(R.id.btn_4);
+        b5 = findViewById(R.id.btn_5);
+        b6 = findViewById(R.id.btn_6);
+        b7 = findViewById(R.id.btn_7);
+
     }
 
 
@@ -55,14 +67,17 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_main);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
-        adapter = new CustomAdapter(this, list);
+        adapter = new CustomAdapter(this, list, this);
         recyclerView.setAdapter(adapter);
 
     }
 
 
-
-
-
-
+    @Override
+    public void onNewsClicked(NewsHeadlines headlines) {
+        startActivity(
+                    new Intent(MainActivity.this, DetailsActivity.class)
+                        .putExtra("data", headlines)
+                    );
+    }
 }
