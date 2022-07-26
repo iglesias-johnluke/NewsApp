@@ -7,3 +7,6 @@
         implementation 'com.squareup.picasso:picasso:2.71828'
         implementation 'com.squareup.retrofit2:retrofit:2.9.0'
         implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+        
+  ### APK File
+  [newsApp.apk.zip](https://github.com/iglesias-johnluke/NewsApp/files/9185791/newsApp.apk.zip)
