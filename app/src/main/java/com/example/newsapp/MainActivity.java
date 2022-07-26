@@ -1,6 +1,7 @@
 package com.example.newsapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.newsapp.Models.NewsApiResponse;
 import com.example.newsapp.Models.NewsHeadlines;
@@ -22,10 +24,16 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
     CustomAdapter adapter;
     ProgressDialog dialog;
     Button b1, b2, b3, b4, b5, b6, b7;
+    SearchView searchView;
 
     private final OnFetchListener<NewsApiResponse> listener = new OnFetchListener<NewsApiResponse>() {
         @Override
         public void onFetchData(List<NewsHeadlines> list, String message) {
+            if(list.isEmpty()){
+                Toast.makeText(MainActivity.this, "No data found", Toast.LENGTH_LONG);
+                return;
+            }
+
             showNews(list);
             dialog.dismiss();
 
@@ -33,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
 
         @Override
         public void onError(String message) {
-
+            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT);
         }
     };
     @Override
@@ -48,6 +56,24 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
         RequestManager manager = new RequestManager(this);
         //queries API news data and then calls showNews() to display UI
         manager.getNewsHeadlines(listener, "general", null);
+
+        searchView = findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                dialog.setTitle("Fetching news articles of " + query);
+                dialog.show();
+                RequestManager manager = new RequestManager(MainActivity.this);
+                //queries API news data and then calls showNews() to display UI
+                manager.getNewsHeadlines(listener, "general", query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
         b1 = findViewById(R.id.btn_1);
         b1.setOnClickListener(this);
@@ -96,6 +122,10 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
                     );
     }
 
+
+    /**
+     * when activity is clicked, request manager gets news headlines
+     * **/
     @Override
     public void onClick(View view) {
         Button button = (Button) view;
