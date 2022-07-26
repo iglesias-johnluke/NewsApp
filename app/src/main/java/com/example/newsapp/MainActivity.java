@@ -16,7 +16,14 @@ import android.widget.Toast;
 import com.example.newsapp.Models.NewsApiResponse;
 import com.example.newsapp.Models.NewsHeadlines;
 
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
+import java.util.Calendar;
+import android.util.Log;
+
+
+
 
 public class MainActivity extends AppCompatActivity implements SelectListener, View.OnClickListener{
 
@@ -34,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
                 return;
             }
 
+
             showNews(list);
             dialog.dismiss();
 
@@ -48,6 +56,10 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
 
         dialog = new ProgressDialog(this);
         dialog.setTitle("Fetching News Articles");

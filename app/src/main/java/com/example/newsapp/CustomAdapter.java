@@ -57,19 +57,21 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
      * **/
     public void setShareIcon(CustomViewHolder holder, int position){
         LinearLayout shareButton = holder.shareButton;
+        ImageButton shareImage = holder.shareImage;
         String url = headlines.get(position).getUrl();
-        shareButton.setOnClickListener( new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view) {
-                        Intent sendIntent = new Intent();
-                        sendIntent.setAction(Intent.ACTION_SEND);
-                        sendIntent.putExtra(Intent.EXTRA_TEXT, url);
-                        sendIntent.setType("text/plain");
-                        Intent shareIntent = Intent.createChooser(sendIntent, null);
-                        context.startActivity(shareIntent);
-                    }
-                }
-        );
+        View.OnClickListener listener = new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, url);
+                sendIntent.setType("text/plain");
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                context.startActivity(shareIntent);
+            }
+        };
+        shareButton.setOnClickListener(listener);
+        shareImage.setOnClickListener(listener);
     }
 
     @Override

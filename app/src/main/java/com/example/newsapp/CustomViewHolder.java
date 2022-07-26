@@ -15,6 +15,7 @@ public class CustomViewHolder extends RecyclerView.ViewHolder {
     ImageView img_headline;
     CardView cardview;
     LinearLayout shareButton;
+    ImageButton shareImage;
 
     public CustomViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -24,5 +25,6 @@ public class CustomViewHolder extends RecyclerView.ViewHolder {
         img_headline = itemView.findViewById(R.id.img_headline);
         cardview = itemView.findViewById(R.id.main_container);
         shareButton = itemView.findViewById(R.id.share_btn);
+        shareImage = itemView.findViewById(R.id.share_image);
     }
 }

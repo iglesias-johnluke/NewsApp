@@ -102,6 +102,17 @@
 
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Today's News"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/purple_500"
+        android:layout_marginLeft="8dp">
+
+    </TextView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_main"
         android:layout_margin="8dp"

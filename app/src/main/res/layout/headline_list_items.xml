@@ -41,32 +41,50 @@
 
             </TextView>
             <LinearLayout
-                android:id="@+id/share_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="right"
-                android:background="@drawable/customborder"
-
-                >
-                <ImageButton
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_share"
-                    android:backgroundTint="@color/white"
-                    >
-                </ImageButton>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/article_age_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:text="0 min ago"
+                    android:textStyle="bold"
+                    android:textColor="#454343">
+
+                </TextView>
+                <LinearLayout
+                    android:id="@+id/share_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/purple_500"
-                    android:text="share"
-                    android:layout_gravity="center"
-                    ></TextView>
+                    android:orientation="vertical"
+                    android:layout_gravity="right"
+                    android:background="@drawable/customborder"
+
+                    >
+                    <ImageButton
+                        android:id="@+id/share_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_share"
+                        android:backgroundTint="@color/white"
+                        android:padding="0dp"
+                        android:layout_gravity="center_horizontal"
+
+                        >
+                    </ImageButton>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/purple_500"
+                        android:text="share"
+                        android:layout_gravity="center"
+                        ></TextView>
+                </LinearLayout>
             </LinearLayout>
+
 
         </LinearLayout>
         <ImageView
