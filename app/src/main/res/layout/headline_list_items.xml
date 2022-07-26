@@ -40,15 +40,34 @@
                 android:layout_height="wrap_content">
 
             </TextView>
-            <ImageButton
+            <LinearLayout
                 android:id="@+id/share_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_share"
-                android:backgroundTint="@color/white"
-                android:layout_gravity="center">
+                android:orientation="vertical"
+                android:layout_gravity="right"
+                android:background="@drawable/customborder"
 
-            </ImageButton>
+                >
+                <ImageButton
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_share"
+                    android:backgroundTint="@color/white"
+                    >
+                </ImageButton>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/purple_500"
+                    android:text="share"
+                    android:layout_gravity="center"
+                    ></TextView>
+            </LinearLayout>
+
         </LinearLayout>
         <ImageView
             android:layout_width="0dp"

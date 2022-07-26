@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ListAdapter;
@@ -55,7 +56,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
      * enables share buttons on article cards
      * **/
     public void setShareIcon(CustomViewHolder holder, int position){
-        ImageButton shareButton = holder.shareButton;
+        LinearLayout shareButton = holder.shareButton;
         String url = headlines.get(position).getUrl();
         shareButton.setOnClickListener( new View.OnClickListener(){
                     @Override

@@ -3,6 +3,7 @@ package com.example.newsapp;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,7 +14,7 @@ public class CustomViewHolder extends RecyclerView.ViewHolder {
     TextView text_title, text_source;
     ImageView img_headline;
     CardView cardview;
-    ImageButton shareButton;
+    LinearLayout shareButton;
 
     public CustomViewHolder(@NonNull View itemView) {
         super(itemView);
