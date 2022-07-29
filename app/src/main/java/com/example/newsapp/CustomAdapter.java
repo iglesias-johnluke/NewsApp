@@ -7,6 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+import java.util.Calendar;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ListAdapter;
@@ -50,6 +57,21 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
         });
 
         setShareIcon(holder, position);
+        setHeadlineAge(holder, position);
+    }
+
+    /**
+     * set headline cardview age
+     **/
+    public void setHeadlineAge(CustomViewHolder holder, int position){
+        String[] publishedAtUTCArray = headlines.get(position).getPublishedAt().split("[T|Z]");
+        String publishedAtUTCRaw = publishedAtUTCArray[1];
+        String[] currentTimeArray = Calendar.getInstance().getTime().toString().split(" ");
+        String currentTimeRaw = currentTimeArray[3];
+
+
+
+        holder.headline_age_textview.setText(publishedAtUTCRaw);
     }
 
     /**
