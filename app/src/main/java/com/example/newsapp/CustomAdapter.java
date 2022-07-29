@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.Calendar;
+import java.util.Locale;
 
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,7 @@ import com.example.newsapp.Models.NewsHeadlines;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import android.util.Log;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
     private Context context;
@@ -64,14 +66,26 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
      * set headline cardview age
      **/
     public void setHeadlineAge(CustomViewHolder holder, int position){
-        String[] publishedAtUTCArray = headlines.get(position).getPublishedAt().split("[T|Z]");
-        String publishedAtUTCRaw = publishedAtUTCArray[1];
-        String[] currentTimeArray = Calendar.getInstance().getTime().toString().split(" ");
-        String currentTimeRaw = currentTimeArray[3];
+
+        try{
+            String publishedAtUTC = headlines.get(position).getPublishedAt().substring(11,19);
+            String dateStr = publishedAtUTC;
 
 
+            SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH);
+            df.setTimeZone(TimeZone.getTimeZone("UTC"));
+            Date date = df.parse(dateStr);
+            df.setTimeZone(TimeZone.getDefault());
+            String formattedDate = df.format(date);
 
-        holder.headline_age_textview.setText(publishedAtUTCRaw);
+            
+
+
+            holder.headline_age_textview.setText(formattedDate);
+        }catch(Exception e){
+            holder.headline_age_textview.setText("? min ago");
+        }
+
     }
 
     /**
